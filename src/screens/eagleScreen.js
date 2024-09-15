@@ -1,7 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+const animalPaths = [
+  { name: "Hreindýr", path: "/animals/hreindyr" },
+  { name: "Hundar", path: "/animals/dog" },
+  { name: "Ernir", path: "/animals/eagle" },
+  { name: "Refir", path: "/animals/arctic-fox" },
+  { name: "Hestar", path: "/animals/horse" },
+  { name: "Selir", path: "/animals/seal" },
+];
+
 function EagleScreen() {
+  const currentIndex = animalPaths.findIndex((animal) => animal.path === "/animals/eagle");
+  const prevAnimal = animalPaths[(currentIndex - 1 + animalPaths.length) % animalPaths.length];
+  const nextAnimal = animalPaths[(currentIndex + 1) % animalPaths.length];
+
   return (
     <div style={styles.container}>
       <h1 style={styles.title}>Ernir</h1>
@@ -10,9 +23,9 @@ function EagleScreen() {
         Ernir eru stórir ránfuglar með framúrskarandi sjón. Þeir lifa að mestu á fiski og öðrum dýrum sem þeir geta náð.
       </p>
       <div style={styles.navigation}>
+        <Link to={prevAnimal.path} style={styles.navLink}>Fyrri ({prevAnimal.name})</Link>
         <Link to="/" style={styles.navLink}>Heim</Link>
-        <Link to="/animals/dog" style={styles.navLink}>Hundar</Link>
-        <Link to="/animals/horse" style={styles.navLink}>Hestar</Link>
+        <Link to={nextAnimal.path} style={styles.navLink}>Næsta ({nextAnimal.name})</Link>
       </div>
     </div>
   );

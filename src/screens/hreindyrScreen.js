@@ -1,18 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+const animalPaths = [
+  { name: "Hreindýr", path: "/animals/hreindyr" },
+  { name: "Hundar", path: "/animals/dog" },
+  { name: "Ernir", path: "/animals/eagle" },
+  { name: "Refir", path: "/animals/arctic-fox" },
+  { name: "Hestar", path: "/animals/horse" },
+  { name: "Selir", path: "/animals/seal" },
+];
+
 function HreindyrScreen() {
+  const currentIndex = animalPaths.findIndex((animal) => animal.path === "/animals/hreindyr");
+  const prevAnimal = animalPaths[(currentIndex - 1 + animalPaths.length) % animalPaths.length];
+  const nextAnimal = animalPaths[(currentIndex + 1) % animalPaths.length];
+
   return (
     <div style={styles.container}>
       <h1 style={styles.title}>Hreindýr</h1>
-      <img src="https://ntvskoli.s3.eu-west-2.amazonaws.com/hreindyr1.jpg" alt="Hreindyr" style={styles.image} />
+      <img src="https://ntvskoli.s3.eu-west-2.amazonaws.com/hreindyr1.jpg" alt="Hreindýr" style={styles.image} />
       <p style={styles.description}>
-        Hreindýr eru stór dýr með horn, þekkt fyrir þátttöku í jólasögum og eru einnig algeng á Austfjörðum.
+        Hreindýr eru stór dýr með horn, þekkt fyrir þátttöku í jólasögum.
       </p>
       <div style={styles.navigation}>
+        <Link to={prevAnimal.path} style={styles.navLink}>Fyrri ({prevAnimal.name})</Link>
         <Link to="/" style={styles.navLink}>Heim</Link>
-        <Link to="/animals/horse" style={styles.navLink}>Hestar</Link>
-        <Link to="/animals/seal" style={styles.navLink}>Selir</Link>
+        <Link to={nextAnimal.path} style={styles.navLink}>Næsta ({nextAnimal.name})</Link>
       </div>
     </div>
   );

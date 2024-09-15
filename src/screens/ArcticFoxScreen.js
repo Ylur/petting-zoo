@@ -1,7 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+const animalPaths = [
+  { name: "Hreindýr", path: "/animals/hreindyr" },
+  { name: "Hundar", path: "/animals/dog" },
+  { name: "Ernir", path: "/animals/eagle" },
+  { name: "Refir", path: "/animals/arctic-fox" },
+  { name: "Hestar", path: "/animals/horse" },
+  { name: "Selir", path: "/animals/seal" },
+];
+
 function ArcticFoxScreen() {
+  const currentIndex = animalPaths.findIndex((animal) => animal.path === "/animals/arctic-fox");
+  const prevAnimal = animalPaths[(currentIndex - 1 + animalPaths.length) % animalPaths.length];
+  const nextAnimal = animalPaths[(currentIndex + 1) % animalPaths.length];
+
   return (
     <div style={styles.container}>
       <h1 style={styles.title}>Refir</h1>
@@ -11,9 +24,9 @@ function ArcticFoxScreen() {
         mjög útsjónarsamir og hraustir.
       </p>
       <div style={styles.navigation}>
+        <Link to={prevAnimal.path} style={styles.navLink}>Fyrri ({prevAnimal.name})</Link>
         <Link to="/" style={styles.navLink}>Heim</Link>
-        <Link to="/animals/seal" style={styles.navLink}>Selir</Link>
-        <Link to="/animals/dog" style={styles.navLink}>Hundar</Link>
+        <Link to={nextAnimal.path} style={styles.navLink}>Næsta ({nextAnimal.name})</Link>
       </div>
     </div>
   );
