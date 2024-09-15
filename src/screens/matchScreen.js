@@ -21,7 +21,7 @@ const animals = [
     ]
   },
   {
-    name: 'Eagle',
+    name: 'Ernir',
     description: 'Ernir eru stórir ránfuglar með framúrskarandi sjón. Þeir lifa að mestu á fiski og öðrum dýrum sem þeir geta náð.',
     imageUrl: ['https://ntvskoli.s3.eu-west-2.amazonaws.com/eagle1.jpg']
   },
@@ -195,7 +195,7 @@ function MatchScreen() {
   );
 }
 
-// Styling for components
+// cssssssss
 const cardStyle = {
   background: '#fff',
   borderRadius: '15px',
