@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Confetti from 'react-confetti'; // Confetti effect
 
+// Define the animals array
 const animals = [
   {
     name: 'Arctic Fox',
@@ -45,7 +47,9 @@ function MatchScreen() {
   const [matches, setMatches] = useState([]);
   const [toggleImage, setToggleImage] = useState(0);
   const [passPosition, setPassPosition] = useState({ top: 0, left: 0 });
+  const [showConfetti, setShowConfetti] = useState(false);
 
+  // Reset the pass button's position
   const resetPassButtonPosition = () => {
     setPassPosition({ top: 0, left: 0 });
   };
@@ -66,7 +70,8 @@ function MatchScreen() {
       setIndex((prevIndex) => prevIndex + 1);
       setToggleImage((prevToggle) => (prevToggle + 1) % 2);
     } else {
-      setIndex(animals.length); 
+      setIndex(animals.length);
+      setShowConfetti(true); // Show confetti when all animals are viewed
     }
   };
 
@@ -77,12 +82,14 @@ function MatchScreen() {
     const buttonWidth = 100;
     const buttonHeight = 50;
 
+    // Generate new positions for the button
     let newLeft = Math.random() > 0.5 ? '250px' : '-250px';
     let newTop = Math.random() > 0.5 ? '300px' : '-300px';
 
     let newLeftValue = parseInt(newLeft, 10);
     let newTopValue = parseInt(newTop, 10);
 
+    // Ensure the button doesn't move off-screen
     if (newLeftValue + buttonWidth > viewportWidth) {
       newLeftValue = viewportWidth - buttonWidth;
     } else if (newLeftValue < 0) {
@@ -95,11 +102,20 @@ function MatchScreen() {
       newTopValue = 0;
     }
 
+    // Update the button's position
     setPassPosition({
       top: `${newTopValue}px`,
       left: `${newLeftValue}px`
     });
   };
+
+  // Adjust confetti timing
+  useEffect(() => {
+    if (showConfetti) {
+      const timer = setTimeout(() => setShowConfetti(false), 5000); // Confetti lasts for 5 seconds
+      return () => clearTimeout(timer);
+    }
+  }, [showConfetti]);
 
   return (
     <div
@@ -113,6 +129,8 @@ function MatchScreen() {
         fontFamily: 'Arial, sans-serif'
       }}
     >
+      {showConfetti && <Confetti width={window.innerWidth} height={window.innerHeight} />} {/* Confetti */}
+
       {index < animals.length ? (
         <>
           <div style={cardStyle}>
@@ -152,15 +170,18 @@ function MatchScreen() {
         </>
       ) : (
         <>
-          <h1>Engin fleiri dýr!</h1>
-          <h2>Þú klappaðir:</h2>
-          <ul>
+          <h1 style={highlightStyle}>Engin fleiri dýr!</h1>
+          <h2 style={subheadingStyle}>Þú klappaðir:</h2>
+          <ul style={listStyle}>
             {matches.map((match, idx) => (
-              <li key={idx} style={{ fontSize: '20px', marginTop: '10px' }}>{match}</li>
+              <li key={idx} style={listItemStyle}>
+                <span role="img" aria-label="handshake">🤝</span> {match}
+              </li>
             ))}
           </ul>
         </>
       )}
+
       <div>
         <Link to="/" style={{ color: '#00796b', textDecoration: 'underline', fontSize: '18px' }}>
           Aftur á yfirlit
@@ -215,6 +236,32 @@ const buttonStyle = {
   boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.3)',
   transition: 'background-color 0.3s ease',
   outline: 'none'
+};
+
+const highlightStyle = {
+  fontSize: '48px',
+  color: '#d32f2f',
+  marginBottom: '20px',
+  animation: 'fadeIn 1s ease'
+};
+
+const subheadingStyle = {
+  fontSize: '32px',
+  color: '#1976d2',
+  marginBottom: '20px',
+  animation: 'fadeIn 1.5s ease'
+};
+
+const listStyle = {
+  listStyleType: 'none',
+  padding: 0
+};
+
+const listItemStyle = {
+  fontSize: '24px',
+  color: '#555',
+  margin: '10px 0',
+  animation: 'fadeIn 2s ease'
 };
 
 export default MatchScreen;
