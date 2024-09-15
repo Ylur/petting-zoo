@@ -14,11 +14,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Home and Match Routes */}
+        {/* Home and Match skjáir */}
         <Route path="/" element={<HomeScreen />} />
         <Route path="/match" element={<MatchScreen />} />
 
-        {/* Animal Routes */}
+        {/*Dýra skjáirnir */}
         <Route path="/animals/hreindyr" element={<HreindyrScreen />} />
         <Route path="/animals/dog" element={<DogScreen />} />
         <Route path="/animals/eagle" element={<EagleScreen />} />

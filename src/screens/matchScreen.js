@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Confetti from 'react-confetti'; // Confetti effect
+import Confetti from 'react-confetti'; // Confetti pakkinn
 
-// Define the animals array
+
 const animals = [
   {
     name: 'Arctic Fox',
-    description: 'The arctic fox is well adapted to living in cold environments.',
+    description: 'Refurinn er vel aðlagaður köldum umhverfum og er eini villti rándýrið á Íslandi. Þeir eru þekktir fyrir að vera mjög útsjónarsamir og hraustir',
     imageUrl: [
       'https://ntvskoli.s3.eu-west-2.amazonaws.com/refur1.jpg',
       'https://ntvskoli.s3.eu-west-2.amazonaws.com/refur2.jpg'
     ]
   },
   {
-    name: 'Dog',
-    description: 'Dogs are domesticated mammals, known for their loyalty and companionship.',
+    name: 'Hundar',
+    description: '  Hundar eru húsdýr, þekktir fyrir trygglyndi og félagsskap.',
     imageUrl: [
       'https://ntvskoli.s3.eu-west-2.amazonaws.com/hundur1.jpg',
       'https://ntvskoli.s3.eu-west-2.amazonaws.com/hundur2.jpg'
@@ -22,22 +22,22 @@ const animals = [
   },
   {
     name: 'Eagle',
-    description: 'Eagles are large birds of prey with excellent eyesight.',
+    description: 'Ernir eru stórir ránfuglar með framúrskarandi sjón. Þeir lifa að mestu á fiski og öðrum dýrum sem þeir geta náð.',
     imageUrl: ['https://ntvskoli.s3.eu-west-2.amazonaws.com/eagle1.jpg']
   },
   {
-    name: 'Horse',
-    description: 'Horses are large domesticated mammals used for riding and transport.',
+    name: 'Hestar',
+    description: 'Hestar eru stór dýr sem eru notuð til reiðar og flutninga. Þeir eru einnig mikilvægir félagar manna í mörgum menningarheimum',
     imageUrl: ['https://ntvskoli.s3.eu-west-2.amazonaws.com/hestur1.jpg']
   },
   {
-    name: 'Reindeer',
-    description: 'Reindeer are species of deer found in arctic regions and domesticated for herding.',
+    name: 'Hreindýr',
+    description: 'Hreindýr eru stór dýr með horn, þekkt fyrir þátttöku í jólasögum',
     imageUrl: ['https://ntvskoli.s3.eu-west-2.amazonaws.com/hreindyr1.jpg']
   },
   {
-    name: 'Seal',
-    description: 'Seals are semi-aquatic marine mammals known for their playful nature.',
+    name: 'Selir',
+    description: ' Selir eru hálf-vatnadýr sem njóta þess að leika sér bæði á landi og í sjó. Þeir eru mjög forvitnir og leiknir í sundi',
     imageUrl: ['https://ntvskoli.s3.eu-west-2.amazonaws.com/selur1.jpg']
   }
 ];
@@ -49,7 +49,7 @@ function MatchScreen() {
   const [passPosition, setPassPosition] = useState({ top: 0, left: 0 });
   const [showConfetti, setShowConfetti] = useState(false);
 
-  // Reset the pass button's position
+  
   const resetPassButtonPosition = () => {
     setPassPosition({ top: 0, left: 0 });
   };
@@ -71,7 +71,7 @@ function MatchScreen() {
       setToggleImage((prevToggle) => (prevToggle + 1) % 2);
     } else {
       setIndex(animals.length);
-      setShowConfetti(true); // Show confetti when all animals are viewed
+      setShowConfetti(true); 
     }
   };
 
@@ -82,14 +82,14 @@ function MatchScreen() {
     const buttonWidth = 100;
     const buttonHeight = 50;
 
-    // Generate new positions for the button
+    // uppfærsla á takkanum
     let newLeft = Math.random() > 0.5 ? '250px' : '-250px';
     let newTop = Math.random() > 0.5 ? '300px' : '-300px';
 
     let newLeftValue = parseInt(newLeft, 10);
     let newTopValue = parseInt(newTop, 10);
 
-    // Ensure the button doesn't move off-screen
+    
     if (newLeftValue + buttonWidth > viewportWidth) {
       newLeftValue = viewportWidth - buttonWidth;
     } else if (newLeftValue < 0) {
@@ -102,17 +102,17 @@ function MatchScreen() {
       newTopValue = 0;
     }
 
-    // Update the button's position
+  
     setPassPosition({
       top: `${newTopValue}px`,
       left: `${newLeftValue}px`
     });
   };
 
-  // Adjust confetti timing
+  // tíminn á confetti
   useEffect(() => {
     if (showConfetti) {
-      const timer = setTimeout(() => setShowConfetti(false), 5000); // Confetti lasts for 5 seconds
+      const timer = setTimeout(() => setShowConfetti(false), 5000); // endist í 5sek
       return () => clearTimeout(timer);
     }
   }, [showConfetti]);
@@ -183,7 +183,11 @@ function MatchScreen() {
       )}
 
       <div>
-        <Link to="/" style={{ color: '#00796b', textDecoration: 'underline', fontSize: '18px' }}>
+        <Link to="/" style={{ 
+          color: '#00796b', 
+          textDecoration: 'underline', 
+          fontSize: '18px' 
+          }}>
           Aftur á yfirlit
         </Link>
       </div>
