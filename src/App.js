@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+// Allar myndir eru teknar af mér
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomeScreen from './screens/homeScreen';
+import DogScreen from './screens/dogScreen';
+import EagleScreen from './screens/eagleScreen';
+import ArticFoxScreen from './screens/articFoxScreen';
+import HorseScreen from './screens/horseScreen';
+import SealScreen from './screens/sealScreen';
+import AnimalDetailScreen from './screens/animalDetailScreen';
+import MatchScreen from './screens/matchScreen';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomeScreen />} />
+        <Route path="/animals/dog" element={<DogScreen />} />
+        <Route path="/animals/eagle" element={<EagleScreen />} />
+        <Route path="/animals/arctic-fox" element={<ArticFoxScreen />} />
+        <Route path="/animals/horse" element={<HorseScreen />} />
+        <Route path="/animals/seal" element={<SealScreen />} />
+        <Route path="/animals/:animal" element={<AnimalDetailScreen />} /> 
+        <Route path="/match" element={<MatchScreen />} />
+      </Routes>
+    </Router>
   );
 }
 
