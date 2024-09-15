@@ -43,42 +43,117 @@ const animals = [
 function MatchScreen() {
   const [index, setIndex] = useState(0);
   const [matches, setMatches] = useState([]);
-  const [toggleImage, setToggleImage] = useState(0); // For animals with multiple images
+  const [toggleImage, setToggleImage] = useState(0);
+  const [passPosition, setPassPosition] = useState({ top: 0, left: 0 });
+
+  const resetPassButtonPosition = () => {
+    setPassPosition({ top: 0, left: 0 });
+  };
 
   const handleMatch = () => {
     setMatches([...matches, animals[index].name]);
     nextAnimal();
+    resetPassButtonPosition();
   };
 
   const handlePass = () => {
     nextAnimal();
+    resetPassButtonPosition();
   };
 
   const nextAnimal = () => {
-    setIndex((prevIndex) => (prevIndex + 1) % animals.length);
-    setToggleImage((prevToggle) => (prevToggle + 1) % 2); // Toggle between two images if available
+    if (index < animals.length - 1) {
+      setIndex((prevIndex) => prevIndex + 1); // næsta dýr
+      setToggleImage((prevToggle) => (prevToggle + 1) % 2); // fletta milli mynda eða "selfies"
+    } else {
+      // stoppa display á dýrum
+      setIndex(animals.length); 
+    }
+  };
+
+  const movePassButton = () => {
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    const buttonWidth = 100;
+    const buttonHeight = 50;
+
+    let newLeft = Math.random() > 0.5 ? '250px' : '-250px';
+    let newTop = Math.random() > 0.5 ? '300px' : '-300px';
+
+    let newLeftValue = parseInt(newLeft, 10);
+    let newTopValue = parseInt(newTop, 10);
+
+    if (newLeftValue + buttonWidth > viewportWidth) {
+      newLeftValue = viewportWidth - buttonWidth;
+    } else if (newLeftValue < 0) {
+      newLeftValue = 0;
+    }
+
+    if (newTopValue + buttonHeight > viewportHeight) {
+      newTopValue = viewportHeight - buttonHeight;
+    } else if (newTopValue < 0) {
+      newTopValue = 0;
+    }
+
+    setPassPosition({
+      top: `${newTopValue}px`,
+      left: `${newLeftValue}px`
+    });
   };
 
   return (
-    <div style={{ backgroundColor: '#fff8e1', minHeight: '100vh', padding: '50px', textAlign: 'center' }}>
+    <div
+      style={{
+        backgroundColor: '#fff8e1',
+        minHeight: '100vh',
+        padding: '50px',
+        textAlign: 'center',
+        position: 'relative'
+      }}
+    >
       {index < animals.length ? (
         <>
           <h1>{animals[index].name}</h1>
           <img
             src={animals[index].imageUrl[toggleImage % animals[index].imageUrl.length]}
             alt={animals[index].name}
-            style={{ width: '300px', height: '300px' }}
+            style={{
+              width: '300px',
+              height: '300px'
+            }}
           />
           <p>{animals[index].description}</p>
-          <div>
-            <button onClick={handleMatch} style={buttonStyle}>Match</button>
-            <button onClick={handlePass} style={buttonStyle}>Pass</button>
+          <div
+            style={{
+              position: 'relative',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <button onClick={handleMatch} style={buttonStyle}>
+              Klappa
+            </button>
+            <button
+              onClick={handlePass}
+              onMouseEnter={movePassButton}
+              style={{
+                ...buttonStyle,
+                position: 'absolute',
+                left: passPosition.left,
+                top: passPosition.top,
+                transition: 'all 0.2s ease'
+              }}
+            >
+              Nei takk
+            </button>
           </div>
         </>
       ) : (
         <>
-          <h1>No more animals to view!</h1>
-          <h2>Your Matches:</h2>
+          <h1>Engin fleiri dýr!</h1>
+          <h2>Þú klappaðir:</h2>
           <ul>
             {matches.map((match, idx) => (
               <li key={idx}>{match}</li>
@@ -87,7 +162,9 @@ function MatchScreen() {
         </>
       )}
       <div>
-        <Link to="/" style={{ color: '#00796b', textDecoration: 'underline' }}>Back to Home</Link>
+        <Link to="/" style={{ color: '#00796b', textDecoration: 'underline' }}>
+          Aftur á yfirlit
+        </Link>
       </div>
     </div>
   );
@@ -102,7 +179,7 @@ const buttonStyle = {
   color: '#fff',
   border: 'none',
   borderRadius: '5px',
-  boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.3)',
+  boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.3)'
 };
 
 export default MatchScreen;
