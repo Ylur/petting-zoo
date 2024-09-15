@@ -3,19 +3,62 @@ import { Link } from 'react-router-dom';
 
 function SealScreen() {
   return (
-    <div style={{ backgroundColor: '#e3f2fd', minHeight: '100vh', padding: '50px', textAlign: 'center' }}>
-      <h1 style={{ color: '#1976d2' }}>Seal</h1>
-      <img
-        src="https://ntvskoli.s3.eu-west-2.amazonaws.com/selur1.jpg"
-        alt="Seal"
-        style={{ width: '300px', height: '300px', borderRadius: '10px' }}
-      />
-      <p style={{ color: '#1976d2', marginTop: '20px' }}>
-        Seals are semi-aquatic marine mammals known for their playful nature and sleek bodies.
+    <div style={styles.container}>
+      <h1 style={styles.title}>Selir</h1>
+      <img src="https://ntvskoli.s3.eu-west-2.amazonaws.com/selur1.jpg" alt="Selir" style={styles.image} />
+      <p style={styles.description}>
+        Selir eru hálf-vatnadýr sem njóta þess að leika sér bæði á landi og í sjó. Þeir eru mjög forvitnir og leiknir í sundi.
       </p>
-      <Link to="/" style={{ color: '#1976d2', textDecoration: 'underline' }}>Back to Home</Link>
+      <div style={styles.navigation}>
+        <Link to="/" style={styles.navLink}>Heim</Link>
+        <Link to="/animals/arctic-fox" style={styles.navLink}>Refir</Link>
+        <Link to="/animals/hreindyr" style={styles.navLink}>Hreindýr</Link>
+      </div>
     </div>
   );
 }
+
+const styles = {
+  container: {
+    backgroundColor: '#e0f7fa',
+    minHeight: '100vh',
+    textAlign: 'center',
+    padding: '50px',
+    fontFamily: 'Arial, sans-serif',
+  },
+  title: {
+    color: '#00796b',
+    fontSize: '48px',
+    marginBottom: '20px',
+    fontWeight: 'bold',
+  },
+  image: {
+    width: '80%',
+    maxHeight: '400px',
+    objectFit: 'cover',
+    borderRadius: '10px',
+    marginBottom: '20px',
+  },
+  description: {
+    fontSize: '20px',
+    color: '#616161',
+    maxWidth: '800px',
+    margin: '0 auto',
+  },
+  navigation: {
+    marginTop: '30px',
+  },
+  navLink: {
+    color: '#00796b',
+    textDecoration: 'none',
+    margin: '0 15px',
+    fontSize: '20px',
+    fontWeight: 'bold',
+    padding: '10px',
+    borderRadius: '5px',
+    border: '2px solid #00796b',
+    transition: 'background-color 0.3s ease',
+  },
+};
 
 export default SealScreen;

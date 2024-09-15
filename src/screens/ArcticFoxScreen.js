@@ -1,18 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function HorseScreen() {
+function ArcticFoxScreen() {
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>Hestar</h1> {/* Correct title here */}
-      <img src="https://ntvskoli.s3.eu-west-2.amazonaws.com/hestur1.jpg" alt="Hestur" style={styles.image} />
+      <h1 style={styles.title}>Refir</h1>
+      <img src="https://ntvskoli.s3.eu-west-2.amazonaws.com/refur1.jpg" alt="Refir" style={styles.image} />
       <p style={styles.description}>
-        Hestar eru stór dýr sem eru notuð til reiðar og flutninga. Þeir eru einnig mikilvægir félagar manna í mörgum menningarheimum.
+        Refurinn er vel aðlagaður köldum umhverfum og er eini villti rándýrið á Íslandi. Þeir eru þekktir fyrir að vera
+        mjög útsjónarsamir og hraustir.
       </p>
       <div style={styles.navigation}>
         <Link to="/" style={styles.navLink}>Heim</Link>
+        <Link to="/animals/seal" style={styles.navLink}>Selir</Link>
         <Link to="/animals/dog" style={styles.navLink}>Hundar</Link>
-        <Link to="/animals/hreindyr" style={styles.navLink}>Hreindýr</Link>
       </div>
     </div>
   );
@@ -61,4 +62,4 @@ const styles = {
   },
 };
 
-export default HorseScreen;
+export default ArcticFoxScreen;

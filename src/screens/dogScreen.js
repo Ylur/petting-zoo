@@ -1,21 +1,45 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 function DogScreen() {
   return (
-    <div style={{ backgroundColor: '#f3e5f5', minHeight: '100vh', padding: '50px', textAlign: 'center' }}>
-      <h1 style={{ color: '#6a1b9a' }}>Dog</h1>
-      <img
-        src="https://ntvskoli.s3.eu-west-2.amazonaws.com/hundur1.jpg"
-        alt="Aslan"
-        style={{ width: '300px', height: '300px', borderRadius: '10px' }}
-      />
-      <p style={{ color: '#6a1b9a', marginTop: '20px' }}>
-        Dogs are domesticated mammals, not natural wild animals. They were originally bred from wolves.
+    <div style={styles.container}>
+      <h1 style={styles.title}>Hundar</h1>
+      <img src="https://ntvskoli.s3.eu-west-2.amazonaws.com/hundur1.jpg" alt="Hundur" style={styles.image} />
+      <p style={styles.description}>
+        Hundar eru húsdýr, þekktir fyrir trygglyndi og félagsskap. Þeir eru ein elsta tegund húsdýra og hafa verið félagar
+        manna um aldir.
       </p>
-      <Link to="/" style={{ color: '#6a1b9a', textDecoration: 'underline' }}>Back to Home</Link>
     </div>
   );
 }
+
+const styles = {
+  container: {
+    backgroundColor: '#e0f7fa',
+    minHeight: '100vh',
+    textAlign: 'center',
+    padding: '50px',
+    fontFamily: 'Arial, sans-serif',
+  },
+  title: {
+    color: '#00796b',
+    fontSize: '48px',
+    marginBottom: '20px',
+    fontWeight: 'bold',
+  },
+  image: {
+    width: '80%',
+    maxHeight: '400px',
+    objectFit: 'cover',
+    borderRadius: '10px',
+    marginBottom: '20px',
+  },
+  description: {
+    fontSize: '20px',
+    color: '#616161',
+    maxWidth: '800px',
+    margin: '0 auto',
+  },
+};
 
 export default DogScreen;
