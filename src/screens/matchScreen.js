@@ -129,7 +129,7 @@ function MatchScreen() {
         fontFamily: 'Arial, sans-serif'
       }}
     >
-      {showConfetti && <Confetti width={window.innerWidth} height={window.innerHeight} />} {/* Confetti */}
+      {showConfetti && <Confetti width={window.innerWidth} height={window.innerHeight} />}
 
       {index < animals.length ? (
         <>

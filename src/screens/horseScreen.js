@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function HorseScreen() {
   return (
     <div style={styles.container}>
-      <h1 style={styles.title}>Hestar</h1> {/* Correct title here */}
+      <h1 style={styles.title}>Hestar</h1> 
       <img src="https://ntvskoli.s3.eu-west-2.amazonaws.com/hestur1.jpg" alt="Hestur" style={styles.image} />
       <p style={styles.description}>
         Hestar eru stór dýr sem eru notuð til reiðar og flutninga. Þeir eru einnig mikilvægir félagar manna í mörgum menningarheimum.

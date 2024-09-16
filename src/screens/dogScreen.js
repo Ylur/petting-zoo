@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// Define animal paths in a specific order
+// routes á síðurnar
 const animalPaths = [
   { name: "Hreindýr", path: "/animals/hreindyr" },
   { name: "Hundar", path: "/animals/dog" },
