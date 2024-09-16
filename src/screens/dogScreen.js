@@ -34,7 +34,7 @@ function DogScreen() {
 
 const styles = {
   container: {
-    backgroundColor: '#e0f7fa',
+    backgroundColor: '#fff9c4',
     minHeight: '100vh',
     textAlign: 'center',
     padding: '50px',

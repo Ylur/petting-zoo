@@ -33,7 +33,7 @@ function EagleScreen() {
 
 const styles = {
   container: {
-    backgroundColor: '#e0f7fa',
+    backgroundColor: '#e8f5e9',
     minHeight: '100vh',
     textAlign: 'center',
     padding: '50px',

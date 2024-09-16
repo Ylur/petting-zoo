@@ -20,7 +20,7 @@ function HorseScreen() {
 
 const styles = {
   container: {
-    backgroundColor: '#e0f7fa',
+    backgroundColor: '#f5f5f5',
     minHeight: '100vh',
     textAlign: 'center',
     padding: '50px',

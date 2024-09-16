@@ -33,7 +33,7 @@ function HreindyrScreen() {
 
 const styles = {
   container: {
-    backgroundColor: '#e0f7fa',
+    backgroundColor: '#f5e0c3',
     minHeight: '100vh',
     textAlign: 'center',
     padding: '50px',
